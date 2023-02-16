@@ -17,6 +17,12 @@
             <div class="card-header">
               Register Form
             </div>
+            <% if (message.length > 0) { %>
+              <div class="alert alert-warning">
+                  <strong><%= message %></strong>
+  
+              </div>
+              <% } %>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"> 
               <form action="/register" method="post">

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
+const userAuth=require('./middleware/userAuth')
 
 const app = express();
 
@@ -21,10 +22,12 @@ app.use(session({
 app.set("view engine", "ejs");
 app.set("views", "views");
 
+app.use(userAuth.authJwt)
+
 const userroute=require('./routes/UserRoute');
 app.use(userroute)
 
-port = process.env.PORT || 40000
+port = process.env.PORT || 3400
 
 const Dbcon = "mongodb+srv://nodeClassjan:BrnrXRpwEfvb35kG@cluster0.4axmojt.mongodb.net/gitAuthor";
 mongoose.connect(Dbcon, {
